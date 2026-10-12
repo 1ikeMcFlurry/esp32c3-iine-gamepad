@@ -1,0 +1,3 @@
+# Optional: needed only for preview/font generation and standalone serial capture.
+Pillow==12.3.0
+pyserial==3.5

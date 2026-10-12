@@ -1,0 +1,19 @@
+menu "IINE L1241 gamepad demo"
+config IINE_PEER_NAME
+    string "Additional device name to include in the gamepad list"
+    default "Xbox Wireless Controller"
+    help
+        L1241 tested path: hold Pairing + A for 3 seconds, then select IINE GAMEPAD.
+        An advertised name does not prove BLE HID compatibility.
+        Controller/Gamepad/IINE names and advertised HID services are included too.
+        Connections are selected with the badge buttons, never automatically.
+config IINE_PEER_ADDRESS
+    string "Optional BLE address filter AA:BB:CC:DD:EE:FF"
+    default ""
+    help
+        Use the address printed by this demo, not a cached phone address.
+        BLE private addresses may change. Leave empty to select on the LCD.
+config IINE_LOG_RAW
+    bool "Print changed raw HID input reports"
+    default y
+endmenu

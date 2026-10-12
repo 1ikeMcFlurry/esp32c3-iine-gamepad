@@ -1,0 +1,12 @@
+/build/
+/sdkconfig
+/sdkconfig.old
+/.venv/
+/venv/
+__pycache__/
+*.pyc
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
