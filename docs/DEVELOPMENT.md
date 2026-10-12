@@ -72,6 +72,23 @@ python tools/make_preview.py
 
 图片使用和设备一致的 C 渲染器，但输入为模拟数据，不能替代真机测试。
 
+首页封面与动图只展示界面页面，不添加设备外壳。Linux / WSL 中先生成页面和 64 帧模拟输入，再用上述虚拟环境生成图片：
+
+```sh
+python tools/fetch_font.py
+gcc -std=c11 -Wall -Wextra -Werror -I main \
+    main/gamepad_ui.c main/gamepad_render.c tests/render_preview.c \
+    -o build/render_preview
+build/render_preview build
+gcc -std=c11 -Wall -Wextra -Werror -I main \
+    main/gamepad_ui.c main/gamepad_render.c tools/render_readme.c \
+    -lm -o build/render_readme
+build/render_readme build
+python tools/readme_art.py
+```
+
+输出位于 `docs/assets/`，包括封面、动图及静态替代图；字体与逐帧 PPM 留在被忽略的 `build/` 中，可在生成后删除。生成过程不更改固件代码。
+
 ## 串口与状态
 
 优先使用 `idf.py -p COM3 monitor`。仅采集日志、避免主动切换 DTR/RTS 时：
